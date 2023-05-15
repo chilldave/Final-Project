@@ -37,11 +37,16 @@ int main(){
             }
             case 2: {
                 // system("clear");
+                if(pila->empty())
+                {
+                    cout<<"La pila esta vacia\n";
+                    // sleep(3);
+                }else{
                 pila->pop();
                 cout<<"El ultimo tope fue eliminado\n"<<endl;
                 // sleep(3);
                 // system("clear");
-                
+                }
                 break;
             }
             case 3: {
@@ -65,8 +70,8 @@ int main(){
                 }else{
                 int numero = pila->currentTope();
                 cout<<"El tope actual es : "<<numero<<endl;
-                break;
                 }
+                break;
             }
             case 5: {
                 // system("clear");
@@ -75,8 +80,8 @@ int main(){
                 }else{
                 pila->clean();
                 cout<<"Todos los elementos de la pila fuero eliminados exitosamente\n";
-                break;
                 }
+                break;
             default:
                 cout<<"\nThanks for using it!\n\n";
                 continue;
