@@ -2,6 +2,7 @@
 
 class Nodo{
     int dato;
+    int indice;
     Nodo *anterior;
     friend class Pila;
 

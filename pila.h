@@ -4,17 +4,15 @@ class Pila{
 
     Nodo* tope;
     int tamano;
+    size_t total_bytes;
 
     public:
     Pila();
     ~Pila();
     bool empty();
-    int  currentTope();
-    void push(int dato);
+    void currentTope();
+    void push(int);
     void pop();
     void printff();
-    int clean();
-    
-
-
+    void clean();
 };
