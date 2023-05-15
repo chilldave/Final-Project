@@ -1,5 +1,5 @@
- 
 #include "nodo.h"
+
 class Pila{
 
     Nodo* tope;
@@ -10,7 +10,7 @@ class Pila{
     bool empty();
     int  currentTope();
     void push(int dato);
-    int pop();
+    void pop();
     void printff();
     int clean();
     

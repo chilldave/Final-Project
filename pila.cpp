@@ -32,20 +32,12 @@ void Pila::push(int dato){
     tamano++;
 }
 
-int Pila::pop(){
+void Pila::pop(){
 
-    if(empty()){
-
-        return -1;
-    }
-    else{
+    if(!empty()){
         Nodo* aux = tope;
         tope= tope->anterior;
-        int tmp = aux;
-        delete(aux);
-        tamano--;
-        return tmp;
-        
+        delete aux;
     }
 }
 
