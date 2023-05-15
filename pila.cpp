@@ -5,6 +5,13 @@ Pila::Pila(){
     tamano = 0;
 
 }
+Pila::~Pila() {
+    while(tope != NULL) {
+        Nodo* tmp = tope;
+        tope = tope->anterior;
+        delete tmp;
+    }
+}
 bool Pila::empty(){
 
     return tope==NULL;

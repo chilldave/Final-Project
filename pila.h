@@ -7,6 +7,7 @@ class Pila{
 
     public:
     Pila();
+    ~Pila();
     bool empty();
     int  currentTope();
     void push(int dato);
