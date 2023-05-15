@@ -30,8 +30,8 @@ int main(){
                 break;
             }
             case 2: {
-                int number = pila->pop();
-                cout<<"Numero Eliminado : "<<number<<endl;
+                pila->pop();
+                cout<<"El ultimo tope fue eliminado"<<endl;
                 break;
             }
             case 3: {
