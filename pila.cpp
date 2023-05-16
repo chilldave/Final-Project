@@ -1,4 +1,5 @@
 #include "pila.h"
+#include "colors.h"
 
 Pila::Pila(){
     tope =NULL;
@@ -16,7 +17,7 @@ bool Pila::empty(){
 }
 
 void Pila::currentTope(){
-    std::cout<<"El tope actual es: "<<tope->dato<<" en direccion -> "<<tope<<std::endl;
+    std::cout<<"El tope actual es: "<<FG_Yellow<<tope->dato<<FG_White<<" en direccion -> "<<FG_Green<<tope<<FG_White<<std::endl;
 }
 
 void Pila::push(int dato){
@@ -24,13 +25,13 @@ void Pila::push(int dato){
     nuevo->anterior = tope;
     nuevo->indice = tamano;
     tope = nuevo;
-    std::cout << "\n- " << dato << " fue ingresado en la direccion de memoria -> " << nuevo << std::endl;
+    std::cout << "\n- " << dato << " fue ingresado en la direccion de memoria -> " <<FG_Green<<nuevo<<FG_White<< std::endl;
     tamano++; total_bytes += sizeof(dato);
 }
 
 void Pila::pop(){
     Nodo* aux = tope;
-    std::cout << "- " << aux->dato << " con direccion -> {" << aux << "} : Tope eliminado" << std::endl;
+    std::cout << FG_Green << "- " << aux->dato << " con direccion -> {" <<FG_Yellow << aux << FG_Green << "} - Tope eliminado" << std::endl;
     tope = tope->anterior;
     tamano--; total_bytes -= sizeof(aux->dato);
     delete aux;
@@ -38,11 +39,11 @@ void Pila::pop(){
 
 void Pila::printff(){
     Nodo* aux = tope;
-    std::cout << "La pila tiene un tamaño total de -> " << tamano << std::endl;
-    std::cout << "Tiene un peso total de -> " << total_bytes << "B" << std::endl;
+    std::cout << "La pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
+    std::cout << "Tiene un peso total de -> " << FG_Yellow << total_bytes << "B" << FG_White << std::endl;
     while(aux!= NULL)
     {
-        std::cout << "\n[" << aux->indice << "] - " << aux->dato << " en direccion de memoria -> "<< aux;
+        std::cout << "\n[" << tamano-aux->indice << "] - " << aux->dato << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
         aux = aux -> anterior;
     }
 }
