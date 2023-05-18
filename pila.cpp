@@ -16,7 +16,7 @@ bool Pila::empty(){
     return tope==NULL;
 }
 void Pila::currentTope(){
-    std::cout<<"El tope actual es: "<<FG_Yellow<<tope->dato<<FG_White<<" en direccion -> "<<FG_Green<<tope<<FG_White<<std::endl;
+    std::cout<<"\n\t\tEl tope actual es: "<<FG_Yellow<<tope->dato<<FG_White<<" en direccion -> "<<FG_Green<<tope<<FG_White<<std::endl;
 }
 
 void Pila::push(std::string dato){
@@ -27,18 +27,18 @@ void Pila::push(std::string dato){
 
     tamano++;
 
-    std::cout << "\n- " << dato << " fue ingresado en la direccion de memoria -> " <<FG_Green<<nuevo<<FG_White<< std::endl;
+    std::cout << "\n\t\t- " << dato << " fue ingresado en la direccion de memoria -> " <<FG_Green<<nuevo<<FG_White<< std::endl;
 }
 void Pila::pop(){
     Nodo* aux = tope;
-    std::cout << FG_Green << "- " << aux->dato << " con direccion -> {" <<FG_Yellow << aux << FG_Green << "} - Tope eliminado" << FG_White << std::endl;
+    std::cout << FG_Green << "\n\t\t- " << aux->dato << " con direccion -> {" <<FG_Yellow << aux << FG_Green << "} - Tope eliminado" << FG_White << std::endl;
     tope = tope->anterior;
     tamano--;
     delete aux;
 }
 void Pila::update(int index, std::string dato) {
 	if (index < 0 or index > tamano) {
-		std::cout << FG_Red << "El indice ingresado no es correcto, ingrese uno que este en el rango de la pila!" << FG_White << std::endl;
+		std::cout << FG_Red << "\n\t\tEl indice ingresado no es correcto, ingrese uno que este en el rango de la pila!" << FG_White << std::endl;
 		return;
 	}
 	Nodo* aux = tope;
@@ -47,17 +47,17 @@ void Pila::update(int index, std::string dato) {
 			aux = aux->anterior;
 			continue;
 		};
-		std::cout << FG_Green << "El indice " << index << " con valor " << aux->dato << " y direccion -> " << "{" << FG_Yellow << aux  << FG_Green << "}\nFue actualizado exitosamente con el valor -> " << FG_Yellow << dato << FG_White << std::endl;
+		std::cout << FG_Green << "\n\t\tEl indice " << index << " con valor " << aux->dato << " y direccion -> " << "{" << FG_Yellow << aux  << FG_Green << "}\nFue actualizado exitosamente con el valor -> " << FG_Yellow << dato << FG_White << std::endl;
 		aux->dato = dato;
 		break;
 	}
 }
 void Pila::printff(){
     Nodo* aux = tope;
-    std::cout << "La pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
+    std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
     while(aux!= NULL)
     {
-        std::cout << "\n[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
+        std::cout << "\n\t\t[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
         aux = aux -> anterior;
     }
 }

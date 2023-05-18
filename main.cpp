@@ -34,30 +34,33 @@ int main(){
         system("clear");
         switch(_opcint){
             case 1: {
+                system("figlet -c -t -k Byte Band: Pila");
                 string dato;
-                cout<<"Ingrese el nuevo a almacenar en la pila: ";
+                cout<<"\n\t\tIngrese el nuevo dato a almacenar en la pila: ";
 				cin.ignore();
 				getline(cin, dato);
                 pila->push(dato);
                 break;
             }
             case 2: {
+                system("figlet -c -t -k Byte Band: Pila");
                 if(pila->empty())
                 {
-                    cout<<FG_Red<<"No se puede eliminar por que la pila esta vacia\n"<<FG_White;
+                    cout<<FG_Red<<"\n\t\tNo se puede eliminar por que la pila esta vacia\n"<<FG_White;
                 }else{
                     pila->pop();
                 }
                 break;
             }
 			case 3: {
+                system("figlet -c -t -k Byte Band: Pila");
 				if (pila->empty()) {
-                    cout<<FG_Red<<"No se puede actualizar ninguna informacion por que la pila esta vacia\n"<<FG_White;
+                    cout<<FG_Red<<"\n\t\tNo se puede actualizar ninguna informacion por que la pila esta vacia\n"<<FG_White;
 				} else {
 					int index = 0;
 					string dato;
-					cout << "Ingrese el indice a actualizar: "; cin >> index;
-					cout << "Ingrese el nuevo dato para el indice " << index << ": ";
+					cout << "\n\t\tIngrese el indice a actualizar: "; cin >> index;
+					cout << "\t\tIngrese el nuevo dato para el indice " << index << ": ";
 					cin.ignore();
 					getline(cin, dato);
 					pila->update(index, dato);
@@ -65,42 +68,47 @@ int main(){
 				break;
 			}
             case 4: {
+                system("figlet -c -t -k Byte Band: Pila");
                 if(pila->empty())
                 {
-                    cout<<FG_Red<<"No se puede mostrar ninguna informacion por que la pila esta vacia\n"<<FG_White;
+                    cout<<FG_Red<<"\n\t\tNo se puede mostrar ninguna informacion por que la pila esta vacia\n"<<FG_White;
                 }else{
-                    cout<<"Todos los elementos de la pila: \n";
+                    cout<<"\n\t\todos los elementos de la pila: \n";
                     pila->printff();
                 }
                 break;
             }
             case 5:{
+                system("figlet -c -t -k Byte Band: Pila");
                 if(pila->empty()){
-                    cout<<FG_Red<<"No se puede mostrar el tope por que la pila esta vacia\n"<<FG_White;
+                    cout<<FG_Red<<"\n\t\tNo se puede mostrar el tope por que la pila esta vacia\n"<<FG_White;
                 }else{
                     pila->currentTope();
                 }
                 break;
             }
             case 6: {
+                system("figlet -c -t -k Byte Band: Pila");
                 if(pila->empty()){
-                    cout<<FG_Red<<"No se puede vaciar por que la pila ya esta vacia\n"<<FG_White;
+                    cout<<FG_Red<<"\n\t\tNo se puede vaciar por que la pila ya esta vacia\n"<<FG_White;
                 }else{
                     pila->clean();
-                    cout<<FG_Green<<"Todos los elementos de la pila fuero eliminados exitosamente\n"<<FG_White;
+                    cout<<FG_Green<<"\n\t\tTodos los elementos de la pila fuero eliminados exitosamente\n"<<FG_White;
                 }
                 break;
 			}
             case 7: {
-                cout<<"\nThanks for using it!\n\n";
+                system("figlet -c -t -k Byte Band: Pila");
+                cout<<"\n\t\t\t  Gracias por usar la aplicacion!\n\n";
                 loop = false;
                 break;
             }
             default:
-                cout << FG_Red << "Opcion no valida, ingrese una que se encuentre en el rango!" << FG_White << endl;
+                system("figlet -c -t -k Byte Band: Pila");
+                cout << FG_Red << "\n\t\tOpcion no valida, ingrese una que se encuentre en el rango!" << FG_White << endl;
                 break;
         }
-        cout<<"\nPress ENTER to continue ... ";
+        cout<<"\n\t\tPress ENTER to continue ... ";
         cin.get();
         cin.get();
     }
