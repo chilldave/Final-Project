@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unistd.h>
-#include "pila.h"
+#include "pila_cola.h"
 #include "colors.h"
 
 using namespace std;
@@ -8,6 +8,7 @@ using namespace std;
 int main(){
 
     Pila* pila = new Pila();
+
     bool loop = true;
     while(loop)
     {
@@ -21,9 +22,10 @@ int main(){
         cout<<"\t\t\t4. Mostrar\n";
         cout<<"\t\t\t5. Mostrar tope\n";
         cout<<"\t\t\t6. Vaciar\n";
-        cout<<"\t\t\t7. Salir\n";
+        cout<<"\t\t\t7. Mostrar Cola\n";
+        cout<<"\t\t\t8. Salir\n";
         cout<<endl<<FG_White;
-        cout<<"\t\t\tElija una opcion(1-7): ";
+        cout<<"\t\t\tElija una opcion(1-8): ";
         cin>>opc;
 
         int _opcint = 0;
@@ -57,13 +59,18 @@ int main(){
 				if (pila->empty()) {
                     cout<<FG_Red<<"\n\t\tNo se puede actualizar ninguna informacion por que la pila esta vacia\n"<<FG_White;
 				} else {
-					int index = 0;
+					string index;
 					string dato;
-					cout << "\n\t\tIngrese el indice a actualizar: "; cin >> index;
-					cout << "\t\tIngrese el nuevo dato para el indice " << index << ": ";
+                    pila->printff();
+					cout << "\n\n\t\tIngrese el valor que desea actualizar : "; 
+                    cin.ignore();
+                    getline(cin,index,'\n');// index;
+                    pila->update(index);
+                    
+					/* cout << "\n\n\t\tIngrese el nuevo dato para " << index << ": ";
 					cin.ignore();
 					getline(cin, dato);
-					pila->update(index, dato);
+					pila->update(index,dato); */
 				}
 				break;
 			}
@@ -97,7 +104,18 @@ int main(){
                 }
                 break;
 			}
-            case 7: {
+            case 7:{
+                system("figlet -c -t -k Byte Band: Pila");
+                if(pila->empty())
+                {
+                    cout<<FG_Red<<"\n\t\tNo se puede mostrar ninguna informacion por que la pila esta vacia\n"<<FG_White;
+                }else{
+                    cout<<"\n\t\todos los elementos de la pila: \n";
+
+                }
+                break;
+            }
+            case 8: {
                 system("figlet -c -t -k Byte Band: Pila");
                 cout<<"\n\t\t\t  Gracias por usar la aplicacion!\n\n";
                 loop = false;
@@ -108,7 +126,7 @@ int main(){
                 cout << FG_Red << "\n\t\tOpcion no valida, ingrese una que se encuentre en el rango!" << FG_White << endl;
                 break;
         }
-        cout<<"\n\t\tPress ENTER to continue ... ";
+        cout<<"\n\n\t\tPress ENTER to continue ... ";
         cin.get();
         cin.get();
     }
