@@ -2,9 +2,7 @@
 #include "colors.h"
 #include <string.h>
 
-
 // PARTE DE LA PILA 
-//Iniciar PIla
 Pila::Pila(){
     tope =NULL;
     tamano = 0;
@@ -12,7 +10,7 @@ Pila::Pila(){
 Pila::~Pila() {
     while(tope != NULL) {
         Nodo* tmp = tope;
-        tope = tope->anterior;
+        tope = tope->siguiente;
         delete tmp;
     }
 }
@@ -30,7 +28,7 @@ void Pila::currentTope(){
 //Agregar valores a la pila 
 void Pila::push(std::string dato){
     Nodo* nuevo = new Nodo(dato);
-    nuevo->anterior = tope;
+    nuevo->siguiente = tope;
     nuevo->indice = tamano;
     tope = nuevo;
     tamano++;
@@ -42,14 +40,15 @@ void Pila::pop(){
 
     Nodo* aux = tope;
     std::cout << FG_Green << "\n\t\t- " << aux->dato << " con direccion -> {" <<FG_Yellow << aux << FG_Green << "} - Tope eliminado" << FG_White << std::endl;
-    tope = tope->anterior;
+    tope = tope->siguiente;
     tamano--;
     delete aux;
 }
 
 void Pila::update(std::string nodoBuscar){
-
+    Pila copy;
     Nodo* aux = tope;
+
     // std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
     std::string nodobuscado = nodoBuscar;
     int encontrado=0;
@@ -60,15 +59,15 @@ void Pila::update(std::string nodoBuscar){
                 std::cout<<"\n\t\tNodo encontrado... \n";
                 std::cout << "\n\t\t[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
                 std::cout << "\n\n\t\tIngrese el nuevo dato para actualizar " <<aux->dato<< ": ";
-				std::cin.ignore();
                 std::cin.ignore();
 				getline(std::cin,aux->dato,'\n');
                 std::cout<<"\n\n Nodo Modificado exitosamente"<<std::endl; 
                 encontrado = 1;
                 break;
             }
+            copy.cPush(aux->dato);
             pop();
-            aux = aux -> anterior;
+            aux = aux -> siguiente;
         }
         if(encontrado ==0)
         {
@@ -78,13 +77,13 @@ void Pila::update(std::string nodoBuscar){
 }
 
 
-void Pila::printff(){
+void Pila::print(){
     Nodo* aux = tope;
     std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
     while(aux!= NULL)
     {
         std::cout << "\n\t\t[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
-        aux = aux -> anterior;
+        aux = aux -> siguiente;
     }
 }
 void Pila::clean(){
@@ -92,7 +91,7 @@ void Pila::clean(){
     while(tope!= NULL){
         aux = tope;
         // std::cout<<aux->dato<<std::endl;
-        tope = tope-> anterior;
+        tope = tope-> siguiente;
         delete(aux);
     }
 	tamano = 0;
@@ -102,7 +101,7 @@ void Pila::clean(){
 
 //Cola
 
-/* Cola::Cola(){
+Cola::Cola(){
     begin = NULL;
     end = nullptr;
 
@@ -112,26 +111,57 @@ bool Cola::emptyCola(){
 
     return begin == nullptr;
 }
+
 void Cola::cPush(std::string elemento){
 
-    Nodo* nuevoCola = new Nodo(elemento);
+    Nodo* nuevaCola = new Nodo(elemento);
 
-    nuevoCola->dato = elemento;
-    nuevoCola->anterior = nullptr;
-    if(emptyCola()){
-        begin = nuevoCola;
-        end = nuevoCola;
+    // nuevoCola->dato = elemento;
+    // nuevoCola->siguiente = nullptr;
+    if(begin == NULL){
+        begin = nuevaCola;
+        begin->siguiente = NULL;
+        end = begin;
+        // end = nuevoCola;
     }else{
 
-        end->anterior= nuevoCola;
-        begin = nuevoCola;
+        end->siguiente=nuevaCola;
+        nuevaCola->siguiente= NULL;
+        end = nuevaCola;
     }
 
 }
-    // void cPop();
-void Cola::CopyStacktoQueue(Pila& pila, Cola& Cola){
-    while(!pila.empty()){
-        
+
+
+void Cola::cPrint(){
+
+    Nodo* current = begin;
+    if(begin!= NULL){
+        while(current!=NULL){
+            std::cout<<"\n "<<current->dato<<"\n";
+            current = current->siguiente;
+        }
+    }else{
+
+         std::cout<<"\n\t\tLa cola esta vacia\n";
     }
+
+
 }
+
+
+/* void cPrint()
+{
+
+    Nodo* actual = new Nodo();
+    actual  = begin;
+    while(actual != nullptr)
+    {
+        std::cout<<begin->dato<<" ";
+        begin = begin->anterior;
+
+    }
+    std::cout;
+}
+    // void cPop();
  */

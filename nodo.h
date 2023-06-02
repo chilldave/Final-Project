@@ -1,11 +1,12 @@
 #include <iostream>
 
 class Nodo{
+
 	std::string dato;
     int indice;
-    Nodo *anterior;
+    Nodo* siguiente;
     friend class Pila;
-    // friend class Cola;
+    friend class Cola;
     public:
 
     Nodo(std::string);

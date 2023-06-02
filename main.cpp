@@ -61,7 +61,7 @@ int main(){
 				} else {
 					string index;
 					string dato;
-                    pila->printff();
+                    pila->print();
 					cout << "\n\n\t\tIngrese el valor que desea actualizar : "; 
                     cin.ignore();
                     getline(cin,index,'\n');// index;
@@ -81,7 +81,7 @@ int main(){
                     cout<<FG_Red<<"\n\t\tNo se puede mostrar ninguna informacion por que la pila esta vacia\n"<<FG_White;
                 }else{
                     cout<<"\n\t\todos los elementos de la pila: \n";
-                    pila->printff();
+                    pila->print();
                 }
                 break;
             }
@@ -106,13 +106,7 @@ int main(){
 			}
             case 7:{
                 system("figlet -c -t -k Byte Band: Pila");
-                if(pila->empty())
-                {
-                    cout<<FG_Red<<"\n\t\tNo se puede mostrar ninguna informacion por que la pila esta vacia\n"<<FG_White;
-                }else{
-                    cout<<"\n\t\todos los elementos de la pila: \n";
-
-                }
+                pila->cPrint();
                 break;
             }
             case 8: {

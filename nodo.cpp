@@ -3,5 +3,5 @@
 Nodo::Nodo(std::string _dato)
 {
     dato = _dato;
-    anterior = NULL;
+    siguiente = NULL;
 }
