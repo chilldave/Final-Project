@@ -36,53 +36,30 @@ void Pila::push(std::string dato){
 }
 
 //Elimina los datos y los muestra;
-void Pila::pop(){
+void Pila::pop2(){
 
     Nodo* aux = tope;
     std::cout << FG_Green << "\n\t\t- " << aux->dato << " con direccion -> {" <<FG_Yellow << aux << FG_Green << "} - Tope eliminado" << FG_White << std::endl;
     tope = tope->siguiente;
-    tamano--;
+     tamano--;
+     delete aux;
+}
+
+std::string Pila::pop(){
+
+    Nodo* aux  = tope;
+    std::string element = aux->dato;
+    tope = tope->siguiente;
     delete aux;
+    return element;
 }
-
-void Pila::update(std::string nodoBuscar){
-    Pila copy;
-    Nodo* aux = tope;
-
-    // std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
-    std::string nodobuscado = nodoBuscar;
-    int encontrado=0;
-    if(tope !=NULL){
-
-        while(aux!= NULL){
-            if(nodobuscado == aux->dato){
-                std::cout<<"\n\t\tNodo encontrado... \n";
-                std::cout << "\n\t\t[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
-                std::cout << "\n\n\t\tIngrese el nuevo dato para actualizar " <<aux->dato<< ": ";
-                std::cin.ignore();
-				getline(std::cin,aux->dato,'\n');
-                std::cout<<"\n\n Nodo Modificado exitosamente"<<std::endl; 
-                encontrado = 1;
-                break;
-            }
-            copy.cPush(aux->dato);
-            pop();
-            aux = aux -> siguiente;
-        }
-        if(encontrado ==0)
-        {
-            std::cout<<"\n\t\tNodo no encontrado "<<std::endl;
-        }
-    }
-}
-
 
 void Pila::print(){
     Nodo* aux = tope;
     std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
     while(aux!= NULL)
     {
-        std::cout << "\n\t\t[" << tamano-aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
+        std::cout << "\n\t\t[" << aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
         aux = aux -> siguiente;
     }
 }
@@ -107,7 +84,7 @@ Cola::Cola(){
 
 }
 
-bool Cola::emptyCola(){
+bool Cola::cEmpty(){
 
     return begin == nullptr;
 }
@@ -118,18 +95,33 @@ void Cola::cPush(std::string elemento){
 
     // nuevoCola->dato = elemento;
     // nuevoCola->siguiente = nullptr;
-    if(begin == NULL){
+    if(cEmpty()){
         begin = nuevaCola;
-        begin->siguiente = NULL;
-        end = begin;
+        // begin->siguiente = NULL;
+        end = nuevaCola;
         // end = nuevoCola;
     }else{
 
         end->siguiente=nuevaCola;
-        nuevaCola->siguiente= NULL;
+        // nuevaCola->siguiente= NULL;
         end = nuevaCola;
     }
 
+}
+
+std::string Cola::cPop(){
+    if(cEmpty()){
+        std::cout<<"Esta vacia\n\n";
+    }
+    Nodo* aux = begin;
+    std::string element = aux->dato;
+    begin = begin->siguiente;
+    delete aux;
+
+    if(begin == nullptr)
+        end = nullptr;
+
+    return  element;
 }
 
 
@@ -138,30 +130,52 @@ void Cola::cPrint(){
     Nodo* current = begin;
     if(begin!= NULL){
         while(current!=NULL){
-            std::cout<<"\n "<<current->dato<<"\n";
+        
+            std::cout<<"\n\t\t\t"<<current->dato;
             current = current->siguiente;
         }
     }else{
 
          std::cout<<"\n\t\tLa cola esta vacia\n";
     }
+} 
 
-
-}
-
-
-/* void cPrint()
-{
-
-    Nodo* actual = new Nodo();
-    actual  = begin;
-    while(actual != nullptr)
-    {
-        std::cout<<begin->dato<<" ";
-        begin = begin->anterior;
-
+void Cola::reverse(){
+    if(cEmpty()){
+        std::cout<<"\n\t\t\tLa cola esta vacia";
     }
-    std::cout;
+    Nodo* actual  = begin;
+    Nodo* anterior = nullptr;
+    Nodo* siguiente = nullptr;
+
+    while(actual != nullptr){
+        siguiente = actual->siguiente;
+        actual->siguiente= anterior;
+        anterior = actual;
+        actual = siguiente;
+    }
+    end = begin;
+    begin = anterior; 
 }
-    // void cPop();
- */
+
+void CopyUntilSpecData(Pila& pila, Cola& cola, std::string valor){
+    while(!pila.empty()){
+
+        std::string element  = pila.pop();
+        if(element == valor)
+        {
+            pila.push(element);
+            break;
+        }
+        cola.cPush(element);
+    }
+}
+
+void returnQueueToStack(Pila & pila, Cola& cola){
+    while (!cola.cEmpty())
+    {
+        std::string element = cola.cPop();
+        pila.push(element);
+    }
+}
+

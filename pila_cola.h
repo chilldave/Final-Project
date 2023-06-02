@@ -1,32 +1,27 @@
 #include "nodo.h"
 
-
-
 class Cola{
 
 
     Nodo* begin;
     Nodo* end;
-    // friend class Pila;
+ 
 
     public:
     Cola();
 
-    bool emptyCola();
-
+    bool cEmpty();
     void cPush(std::string);
-
-    void cPop();
+    std::string cPop();
     void cPrint();
-
-    // void CopyStacktoQueue(Pila& pila, Cola& Cola);
+    void reverse();
 
 };
-class Pila : public Cola {
+class Pila {
 
     Nodo* tope;
     int tamano;
-    // friend class Cola;
+
     public:
 
     Pila();
@@ -34,12 +29,19 @@ class Pila : public Cola {
     bool empty();
     void currentTope();
     void push(std::string);
-    void pop();
-    void update(std::string);
+    std::string pop();
+    void pop2();
+    // void update(std::string);
     void print();
     //clear everything in the stack
     void clean();
 };
+
+void CopyUntilSpecData(Pila& pila, Cola& cola, std::string valor);
+
+void returnQueueToStack(Pila & pila, Cola& cola);
+
+
 
 
 
