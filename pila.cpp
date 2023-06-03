@@ -142,7 +142,7 @@ void Cola::cPrint(){
     std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
     if(begin!= NULL){
         while(current!=NULL){
-            std::cout << "\n\t\t["<<indice<<"] - " << FG_Red << current->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << current << FG_White;
+            std::cout << "\n\t\t- " << FG_Red << current->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << current << FG_White;
             // std::cout<<"\n\t\t\t"<<current->dato;
             current = current->siguiente;
         }
@@ -176,7 +176,7 @@ void CopyUntilSpecData(Pila& pila, Cola& cola, std::string valor){
 
         std::string element  = pila.pop();
         if(element == valor)
-        {
+        {   std::cout<<FG_Green<<"\n\n\t\tNodo encontrado :"<<FG_White;
             pila.push(element);
             std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
             break;
@@ -190,6 +190,7 @@ void returnQueueToStack(Pila & pila, Cola& cola){
     {
         std::string element = cola.cPop();
         pila.push(element);
+        std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
     }
 }
 

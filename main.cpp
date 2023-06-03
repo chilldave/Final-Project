@@ -65,39 +65,52 @@
                     } else {
                         string valor;
                         string dato;
+                        /* system("clear");
+                        system("figlet -c -t -k Byte Band: Pila"); */
                         pila->print();
-                        std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
-
+                        cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
                         cout << "\n\n\t\tIngrese el valor que desea actualizar : "; 
                         cin.ignore();
                         getline(cin,valor,'\n');// index;
 
                         CopyUntilSpecData(*pila,*cola,valor);
-                        std::cout<<"\n";
-                        std::cout<<"\n\n\t\tEsto es la pila\n";
+                        cout<<"\n";
+                        cout<<FG_Green<<"\n\n\t\tPILA : \n"<<FG_White;
                         // std::cout<< FG_Orange <<"----------------------------------------------------------------------"<<FG_White<<std::endl;
                         pila->print();
-                        std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
-                        std::cout<<"\n\n\t\tEsto es la cola\n";
-                        // std::cout<< FG_Orange <<"\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+                        cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+                        cout<<FG_Green<<"\n\n\t\tCOLA : "<<FG_White;
                         cola->cPrint();
-
+                        cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+                        cin.get();
+                        cin.get();
                         if(!pila->empty()){
+                            system("clear");
+                            system("figlet -c -t -k Byte Band: Pila");
                             std::string elemento = pila->pop();
                             std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
 
-                            cout << "\n\n\t\tIngrese el nuevo dato para " << FG_Yellow <<valor << FG_White <<": ";
+                            cout << "\n\t\tIngrese el nuevo dato para " << FG_Yellow <<valor << FG_White <<" : ";
                             fflush(stdin);
                             getline(cin, dato, '\n');
+                            cout<<FG_Green<<"\n\n\t\tNodo Actualizado :"<<FG_White;
                             pila->push(dato);
+                            cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
                         }
-
+                        if(!cola->cEmpty()){
+                            cout<<"\n\n\t\tDevolver los valores a la pila : \n";
                         cola->reverse();
                         returnQueueToStack(*pila,*cola);
-                        
-                        std::cout<<"\n\n\t\tEsto es la pila";
+                        }else{
+                            cout<<"\n\t\tSin cambio\n";
+                        }
+                        std::cout<<"\n";
+                        std::cout<<FG_Green<<"\n\n\t\tPILA : \n"<<FG_White;
+                        // std::cout<< FG_Orange <<"----------------------------------------------------------------------"<<FG_White<<std::endl;
                         pila->print();
-                        std::cout<<"\n\n\t\tEsto es la cola";
+                        std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+                        std::cout<<FG_Green<<"\n\n\t\tCOLA : "<<FG_White;
+                        // std::cout<< FG_Orange <<"\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
                         cola->cPrint();
                     }
 
