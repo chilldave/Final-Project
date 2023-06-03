@@ -22,6 +22,8 @@ bool Pila::empty(){
 
 //Mostrar el tope actual
 void Pila::currentTope(){
+
+    std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
     std::cout<<"\n\t\tEl tope actual es: "<<FG_Yellow<<tope->dato<<FG_White<<" en direccion -> "<<FG_Green<<tope<<FG_White<<std::endl;
 }
 
@@ -29,10 +31,12 @@ void Pila::currentTope(){
 void Pila::push(std::string dato){
     Nodo* nuevo = new Nodo(dato);
     nuevo->siguiente = tope;
-    nuevo->indice = tamano;
+    // nuevo->indice = tamano;
     tope = nuevo;
     tamano++;
-    std::cout << "\n\t\t- " << dato << " fue ingresado en la direccion de memoria -> " <<FG_Green<<nuevo<<FG_White<< std::endl;
+    std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+
+    std::cout << "\n\t\t- " <<FG_Yellow<< dato << FG_White" fue ingresado en la direccion de memoria -> " <<FG_Green<<nuevo<<FG_White<< std::endl;
 }
 
 //Elimina los datos y los muestra;
@@ -57,11 +61,17 @@ std::string Pila::pop(){
 void Pila::print(){
     Nodo* aux = tope;
     std::cout << "\n\t\tLa pila tiene un tamaño total de -> " << FG_Green << tamano << FG_White << std::endl;
+        std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
+
+    int indice=0;
     while(aux!= NULL)
     {
-        std::cout << "\n\t\t[" << aux->indice << "] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
+        std::cout << "\n\t\t["<<indice+1<<"] - " << FG_Red << aux->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << aux << FG_White;
         aux = aux -> siguiente;
+        indice++;
     }
+    std::cout<<"\n";
+    // aux->indice = 1;
 }
 void Pila::clean(){
     Nodo* aux = tope;
@@ -128,15 +138,18 @@ std::string Cola::cPop(){
 void Cola::cPrint(){
 
     Nodo* current = begin;
+    int indice=0;
+    std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
     if(begin!= NULL){
         while(current!=NULL){
-        
-            std::cout<<"\n\t\t\t"<<current->dato;
+            std::cout << "\n\t\t["<<indice<<"] - " << FG_Red << current->dato << FG_White << " en direccion de memoria -> "<< FG_Yellow << current << FG_White;
+            // std::cout<<"\n\t\t\t"<<current->dato;
             current = current->siguiente;
         }
+        std::cout<<"\n";
     }else{
 
-         std::cout<<"\n\t\tLa cola esta vacia\n";
+         std::cout<<FG_Red <<"\n\t\tLa cola esta vacia\n"<<FG_White;
     }
 } 
 
@@ -165,6 +178,7 @@ void CopyUntilSpecData(Pila& pila, Cola& cola, std::string valor){
         if(element == valor)
         {
             pila.push(element);
+            std::cout<< FG_Orange <<"\n\t\t----------------------------------------------------------------------"<<FG_White<<std::endl;
             break;
         }
         cola.cPush(element);

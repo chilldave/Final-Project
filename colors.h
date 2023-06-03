@@ -2,3 +2,4 @@
 #define FG_Red "\x1B[31m"
 #define FG_Green "\x1B[32m"
 #define FG_Yellow "\x1B[33m"
+#define FG_Orange "\x1B[36m	"

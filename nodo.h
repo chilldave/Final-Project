@@ -3,7 +3,7 @@
 class Nodo{
 
 	std::string dato;
-    int indice;
+    // int indice;
     Nodo* siguiente;
     friend class Pila;
     friend class Cola;
